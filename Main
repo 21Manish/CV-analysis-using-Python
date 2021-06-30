@@ -1,0 +1,26 @@
+from pdf2image import convert_from_path
+from pytesseract import image_to_string
+import pytesseract
+
+images = convert_from_path("//Path of resume" , poppler_path=r'//path of poppler file')
+pytesseract.pytesseract.tesseract_cmd = r'//path of tesseract file'
+final = ''
+for pg , img in enumerate(images):
+    final += image_to_string(img)
+
+study = ['Computer Science' , 'BBA' , 'Commerce' , 'Software Engineering']
+uni = ['SZABIST' , 'IOBM' , 'Mehran' , 'IBA' , 'NUST' , 'LUMS']
+city = ['Karachi' , 'Lahore' , 'Islamabad' , 'Mirpurkhas']
+
+for x in study:
+    if final.find(x):
+        print("Candidate Major In : "+x)
+        break
+for x in uni:
+    if final.find(x):
+        print("Candidates University: "+x)
+        break
+for x in city:
+    if final.find(x):
+        print("Candidates City : "+x)
+        break
